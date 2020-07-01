@@ -6,11 +6,10 @@ CRA도 기본 javascript환경외에 typescript 환경도 가능함.
 
 처음 빌드 파일들을 설치하는 명령어로 초기 빌드 구성.
 
-```
-npx create-react-app my-app --template typescript
-
-# or
-
+```tsx
+//npx create-react-app my-app --template typescript
+//or
+//내가 선택한 것
 yarn create react-app my-app --template typescript
 ```
 
@@ -35,11 +34,10 @@ yarn create react-app my-app --template typescript
 아래는 eslint를 airbnb 스타일로 세팅한다는 것
 
 
-```
-# Using npm
-npm install eslint-config-airbnb-typescript --save-dev
-
-# Using yarn
+```tsx
+//npm install eslint-config-airbnb-typescript --save-dev
+//or
+//내가 선택한 것
 yarn add --dev eslint-config-airbnb-typescript
 ```
 
@@ -49,8 +47,9 @@ yarn add --dev eslint-config-airbnb-typescript
 
 #### VS code 세팅은 그대로
 
-```
+```tsx
 //settings.json
+
 {
   "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
   "python.pythonPath": "C:\\Program Files\\Python37\\python.exe",
@@ -61,7 +60,13 @@ yarn add --dev eslint-config-airbnb-typescript
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },  
-  "files.autoSave": "afterDelay"
+  "files.autoSave": "afterDelay",
+  "workbench.iconTheme": "vscode-icons",
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.formatOnSave": true,
+  "eslint.autoFixOnSave": true
 }
 ```
 
@@ -73,10 +78,10 @@ yarn add --dev eslint-config-airbnb-typescript
 {
   "parser": "@typescript-eslint/parser",
   "extends": [
+    "plugin:prettier/recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
-    "prettier/@typescript-eslint",
-    "plugin:prettier/recommended"
+    "prettier/@typescript-eslint"   
   ],
   "parserOptions": {
     "ecmaFeatures": {
@@ -84,9 +89,14 @@ yarn add --dev eslint-config-airbnb-typescript
     }
   },
   "rules": {
-    // Place to specify ESLint rules.
-    // Can be used to overwrite rules specified from the extended configs
-    // e.g. "@typescript-eslint/explicit-function-return-type": "off",
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "endOfLine": "auto"
+        }
+      ]
+    }
   },
   "settings": {
     "react": {
@@ -116,11 +126,46 @@ yarn add --dev eslint-config-airbnb-typescript
 ```tsx
 //package.json // eslint버전이 안맞으면 에러남
 
-"eslintConfig": {
+{
+  "name": "test3",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "@types/jest": "^24.0.0",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.0",
+    "@types/react-dom": "^16.9.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.1",
+    "typescript": "~3.7.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
     "extends": "react-app"
-},
-
-"devDependencies": {
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "eslint-config-airbnb-typescript": "^8.0.2",
     "@typescript-eslint/eslint-plugin": "^3.4.0",
     "@typescript-eslint/parser": "^3.4.0",
     "eslint": "^6.6.0",
@@ -128,5 +173,5 @@ yarn add --dev eslint-config-airbnb-typescript
     "eslint-plugin-prettier": "^3.1.4",
     "prettier": "^2.0.5"
   }
+}
 ```
-
